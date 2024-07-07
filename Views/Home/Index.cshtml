@@ -1,0 +1,60 @@
+﻿@using MVC.Models
+
+@functions{
+    // Local function
+    double? GetAge(DateTime? dob)
+    {
+        if (dob is not null)
+        {
+            return Math.Round((DateTime.Now - dob.Value).TotalDays / 365.25);
+        }
+        else
+        {
+            return null; ;
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["appTitle"]</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/StyleSheet.css"? />
+</head>
+<body>
+    <div class="page-content">
+        <h1>Welcome</h1>
+        @{
+            //List<Person>? people = (List<Person>?)ViewData["people"];
+        }
+
+        @foreach(Person person in ViewBag.people)
+        {
+            <div class="box float-left w-50">
+                <h3>@person.Name</h3>
+                <table class="table w-100">
+                    <tbody>
+                       <tr>
+                           <td>Gender</td>
+                           <td>@person.Gender</td>
+                       </tr>
+                        <tr>
+                            <td>DoB</td>
+                            <td>@person.Dob?.ToString("MM/dd/yyyy")</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+
+    </div>
+    
+    
+</body>
+
+
+</html>
+
