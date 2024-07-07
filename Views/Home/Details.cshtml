@@ -1,0 +1,36 @@
+﻿@using MVC.Models
+@model Person
+<! DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.appTitle</title>
+    <meta charset="utf-8"/>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="page-content">
+        <h1>Pesrson Details</h1>
+        <div class="box">
+            <table class="table w-100">
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>@Model.Gender</td>
+                    </tr>
+                    <tr>
+                        <td>DOB</td>
+                        <td>@Model.Dob?.ToString("MM/dd/yyyy")</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       <a href="/home">Back to main</a>
+
+    </div>
+</body>
+</html>

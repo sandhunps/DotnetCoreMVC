@@ -25,11 +25,30 @@ namespace MVC.Controllers
                 new Person() { Name = "Linda", Dob = DateTime.Parse("2005-01-09"), Gender = Gender.Female},
                 new Person() { Name = "Susan", Dob = DateTime.Parse("2008-07-12"), Gender = Gender.Other}
             };
-           // ViewData["people"] = people;
-           // instead of ViewData you can directly use ViewBag
-            ViewBag.people = people;
 
-            return View(); //Views/Home/Index.cshtml
+
+            return View("Index",people);
+        }
+
+        [Route("person-details/{name}")]
+        public IActionResult Details([FromRoute]string name)
+        {
+            ViewData["appTitle"] = "Person Details";
+
+            if (name == null)
+                return Content("Name cannot be null");
+
+            List<Person> people = new List<Person>()
+            {
+                new Person() { Name = "John", Dob = DateTime.Parse("2000-05-06"), Gender = Gender.Male},
+                new Person() { Name = "Linda", Dob = DateTime.Parse("2005-01-09"), Gender = Gender.Female},
+                new Person() { Name = "Susan", Dob = DateTime.Parse("2008-07-12"), Gender = Gender.Other}
+            };
+
+            Person? match = people.Where(p => p.Name == name).FirstOrDefault();
+
+
+            return View("Details", match);
         }
 
         [Route("Basics")]

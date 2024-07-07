@@ -1,19 +1,5 @@
 ﻿@using MVC.Models
-
-@functions{
-    // Local function
-    double? GetAge(DateTime? dob)
-    {
-        if (dob is not null)
-        {
-            return Math.Round((DateTime.Now - dob.Value).TotalDays / 365.25);
-        }
-        else
-        {
-            return null; ;
-        }
-    }
-}
+@model IEnumerable<Person>;
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +15,7 @@
             //List<Person>? people = (List<Person>?)ViewData["people"];
         }
 
-        @foreach(Person person in ViewBag.people)
+        @foreach(Person person in Model)
         {
             <div class="box float-left w-50">
                 <h3>@person.Name</h3>
@@ -44,9 +30,8 @@
                             <td>@person.Dob?.ToString("MM/dd/yyyy")</td>
                         </tr>
                     </tbody>
-
                 </table>
-
+                <a href="person-details/@person.Name">Details</a>
             </div>
         }
 
